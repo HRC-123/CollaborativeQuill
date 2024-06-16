@@ -50,7 +50,8 @@ const Editor = () => {
   }, []);
 
   useEffect(() => {
-    const socketServer = io("https://writewaveserver.onrender.com");
+    // const socketServer = io("https://writewaveserver.onrender.com");
+    const socketServer = io("http://localhost:9000");
     setSocket(socketServer);
 
     return () => {
