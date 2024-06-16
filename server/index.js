@@ -9,10 +9,10 @@ const PORT = 9000;
 Connection();
 
 const io = new Server(PORT, {
-    cors: {
-        origin: 'http://localhost:3000',
-        methods:['GET','POST']
-    }
+  cors: {
+    origin: "https://writewave-e6os.onrender.com",
+    methods: ["GET", "POST"],
+  },
 });
 
 io.on('connection', socket => {

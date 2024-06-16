@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "jest",
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
   "author": "HRC",
   "license": "ISC",
