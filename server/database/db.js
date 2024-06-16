@@ -1,7 +1,9 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
-const Connection = async(user='ramcharan',password='1234') => {
-    const URL = `mongodb+srv://${user}:${password}@writewave.7j2pvet.mongodb.net/?retryWrites=true&w=majority&appName=WriteWave`;
+dotenv.config();
+const Connection = async() => {
+    const URL = process.env.URL;
 
     try {
         await mongoose.connect(URL, { useUnifiedTopology: true, useNewUrlParser: true });

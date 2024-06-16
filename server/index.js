@@ -4,13 +4,16 @@ import Connection from './database/db.js';
 
 import { getDocument,updateDocument } from './controller/document-controller.js';
 
-const PORT = 9000;
+
+import dotenv from "dotenv";
+
+dotenv.config();
 
 Connection();
 
-const io = new Server(process.env.port || PORT, {
+const io = new Server(process.env.PORT, {
   cors: {
-        origin: "https://writewave-e6os.onrender.com",
+        origin: process.env.CLIENT,
     // origin: "https://localhost:3000",
     methods: ["GET", "POST"],
   },
