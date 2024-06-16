@@ -7,7 +7,6 @@ import { io } from "socket.io-client";
 
 import { useParams } from 'react-router-dom';
 
-
 const toolbarOptions = [
   ["bold", "italic", "underline", "strike"], // toggled buttons
   ["blockquote", "code-block"],
@@ -50,7 +49,7 @@ const Editor = () => {
   }, []);
 
   useEffect(() => {
-    const socketServer = io("https://writewaveserver.onrender.com");
+    const socketServer = io("https://collaborativequillserver.onrender.com");
     // const socketServer = io("http://localhost:9000");
     setSocket(socketServer);
 
