@@ -3,7 +3,7 @@ const Share = (props) => {
     const Done = () => {
          props.setVisibility(!props.visibility);
         props.setBg(!props.bg);
-        window.location.reload();
+        // window.location.reload();
     }
 
     const Copy = () => {
@@ -16,14 +16,14 @@ const Share = (props) => {
         props.visibility ? "block" : "none"
       }`}
     >
-      <p className="font-medium flex gap-2 text-md justify-center">
+      <div className="font-medium flex gap-2 text-md justify-center">
         Share <p className="font-bolder">"{props.name}"</p>
-      </p>
+      </div>
       <input
         type="url"
         value={window.location.href}
         className="border border-black w-full p-2.5 rounded-md text-black text-center"
-      />
+      readOnly/>
 
       <div className="flex justify-around">
         <button

@@ -11,6 +11,8 @@ import Name from "./Name";
 import Share from "./Share";
 import Loader from "./Loader";
 
+
+
 const toolbarOptions = [
   ["bold", "italic", "underline", "strike"], // toggled buttons
   ["blockquote", "code-block"],
@@ -37,9 +39,9 @@ const Editor = () => {
   const [quill, setQuill] = useState();
   const { id } = useParams();
   const [name, setName] = useState("Untitled Document");
-  const [visibility, setVisibility] = useState(false);
-  const [bg, setBg] = useState(false);
-  const [load, setLoad] = useState(false);
+  const [visibility, setVisibility] = useState(true);
+  const [bg, setBg] = useState(true);
+  const [load, setLoad] = useState(true);
 
   useEffect(() => {
     const quillServer = new Quill("#container", {
@@ -50,7 +52,7 @@ const Editor = () => {
     });
 
     quillServer.disable();
-    quillServer.setText("Loading the document........");
+    // quillServer.setText('Loading ................')
 
     setQuill(quillServer);
   }, []);
@@ -103,6 +105,10 @@ const Editor = () => {
         quill && quill.setContents(document);
         setName(Name);
         quill && quill.enable();
+         setLoad(false);
+         setVisibility(false);
+         setBg(false);
+        
         quill.setSelection(0, 0);
       });
 
@@ -124,8 +130,36 @@ const Editor = () => {
     };
   }, [socket, quill, name]);
 
+  useEffect(() => {
+    // Logic to find and hide the automatically created input element
+    const inputElement = document.querySelector('input[data-formula="e=mc^2"]');
+    if (inputElement) {
+      inputElement.style.display = "none"; // Hide the input element
+    }
+  });
+
+  useEffect(() => {
+    let timeOut;
+    if (load === true) {
+      console.log("Auto Reload Triggering");
+      timeOut = setTimeout(() => {
+        console.log("Auto Reload Triggering Done");
+        window.location.reload();
+      }, 20000);
+
+    }
+
+    return () => {
+      if (timeOut) {
+        clearTimeout(timeOut);
+      }
+    };
+  }, [load]);
+
+ 
+
   return (
-    <div className={`w-full bg-gray-100 ${bg ? "blur-parent" : ""}`}>
+    <div className={`w-full bg-gray-100 ${bg ? "blur-parent" : ""} font-mono`}>
       <Name
         name={name}
         setName={setName}
@@ -142,18 +176,22 @@ const Editor = () => {
         }`}
       ></div>
 
-      {visibility && !load ? ( 
+      {visibility && (
         <div className="fixed top-1/3 left-[20%] ml-20">
-          <Share
-            visibility={visibility}
-            setVisibility={setVisibility}
-            bg={bg}
-            setBg={setBg}
-            name={name}
-          />
+          {load ? (
+            <Loader />
+          ) : (
+            <div className="fixed top-1/3 left-[20%] ml-20">
+              <Share
+                visibility={visibility}
+                setVisibility={setVisibility}
+                bg={bg}
+                setBg={setBg}
+                name={name}
+              />
+            </div>
+          )}
         </div>
-      ) : (
-        <div><Loader /></div> 
       )}
     </div>
   );
