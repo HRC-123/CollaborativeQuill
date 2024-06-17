@@ -11,31 +11,33 @@ dotenv.config();
 
 Connection();
 
-const io = new Server(process.env.PORT, {
+const io = new Server(process.env.port || 9000, {
   cors: {
         origin: process.env.CLIENT,
-    // origin: "https://localhost:3000",
+    // origin: "http://localhost:3000",
     methods: ["GET", "POST"],
   },
 });
 
 io.on('connection', socket => {
 
-    socket.on('get-document', async documentId => {
+  socket.on('get-document', async ({ documentId, name }) => {
 
-        const document = await getDocument(documentId);
+    console.log("Index.js", documentId, name);
 
-        socket.join(documentId);
-        socket.emit('load-document', document.data);
+    const document = await getDocument({ "id": documentId, "name": name });
 
-        socket.on("send-changes", (delta) => {
-          socket.broadcast.to(documentId).emit("receive-changes", delta);
+    socket.join(documentId);
+    socket.emit('load-document', { "document": document.data, "Name": document.name });
+
+    socket.on("send-changes", ({delta}) => {
+          socket.broadcast.to(documentId).emit("receive-changes", { "delta": delta });
 
           console.log("connected", delta);
         });
 
-        socket.on('save-document', async data => {
-            await updateDocument(documentId, data);
+    socket.on('save-document', async ({ name, data }) => {
+            await updateDocument(documentId,name, data);
         })
     })
 
