@@ -69,4 +69,4 @@ Only genuine pull requests are merged.
 The website is hosted on [Render](https://render.com/)
 
 ## Authors
-- [@hrc-123](https://github.com/HRC-123)
+- [@HRC-123](https://github.com/HRC-123)
