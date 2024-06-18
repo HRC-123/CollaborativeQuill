@@ -13,8 +13,8 @@ Connection();
 
 const io = new Server(process.env.port || 9000, {
   cors: {
-        // origin: process.env.CLIENT,
-    origin: "http://localhost:3000",
+        origin: process.env.CLIENT,
+    // origin: "http://localhost:3000",
     methods: ["GET", "POST"],
   },
 });

@@ -58,8 +58,8 @@ const Editor = () => {
   }, []);
 
   useEffect(() => {
-    // const socketServer = io("https://collaborativequillserver.onrender.com");
-    const socketServer = io("http://localhost:9000");
+    const socketServer = io("https://collaborativequillserver.onrender.com");
+    // const socketServer = io("http://localhost:9000");
     setSocket(socketServer);
 
     return () => {
@@ -167,6 +167,7 @@ const Editor = () => {
         setVisibility={setVisibility}
         bg={bg}
         setBg={setBg}
+        load={load}
       />
 
       <div
@@ -177,7 +178,7 @@ const Editor = () => {
       ></div>
 
       {visibility && (
-        <div className="fixed top-1/3 left-[28%] ml-20">
+        <div className="fixed top-1/3 left-[24%] ml-20">
           {load ? (
             <Loader />
           ) : (

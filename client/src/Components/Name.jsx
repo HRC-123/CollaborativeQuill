@@ -25,7 +25,9 @@ const Name = (props) => {
           src="../quilllogo.jpg"
           alt="Logo"
           className="h-auto w-16 cursor-pointer mix-blend-multiply p-2"
-          onClick={()=>{Logo()}}
+          onClick={() => {
+            Logo();
+          }}
         ></img>
         <input
           value={props.name}
@@ -37,6 +39,7 @@ const Name = (props) => {
       <button
         className="border border-blue-900 m-2 p-1 w-28 h- auto rounded-lg mr-5 bg-blue-600 text-white hover:bg-blue-900"
         onClick={() => share()}
+        disabled={props.load ? true : false}
       >
         Share
       </button>
