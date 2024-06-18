@@ -58,8 +58,8 @@ const Editor = () => {
   }, []);
 
   useEffect(() => {
-    const socketServer = io("https://collaborativequillserver.onrender.com");
-    // const socketServer = io("http://localhost:9000");
+    // const socketServer = io("https://collaborativequillserver.onrender.com");
+    const socketServer = io("http://localhost:9000");
     setSocket(socketServer);
 
     return () => {
@@ -145,7 +145,7 @@ const Editor = () => {
       timeOut = setTimeout(() => {
         console.log("Auto Reload Triggering Done");
         window.location.reload();
-      }, 20000);
+      }, 15000);
 
     }
 
@@ -177,7 +177,7 @@ const Editor = () => {
       ></div>
 
       {visibility && (
-        <div className="fixed top-1/3 left-[20%] ml-20">
+        <div className="fixed top-1/3 left-[28%] ml-20">
           {load ? (
             <Loader />
           ) : (
