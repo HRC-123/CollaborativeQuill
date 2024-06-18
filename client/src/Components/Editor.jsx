@@ -178,11 +178,11 @@ const Editor = () => {
       ></div>
 
       {visibility && (
-        <div className="fixed top-1/3 left-[24%] ml-20">
+        <div className="fixed top-[35%] left-[31%]">
           {load ? (
             <Loader />
           ) : (
-            <div className="fixed top-1/3 left-[20%] ml-20">
+            <div className="">
               <Share
                 visibility={visibility}
                 setVisibility={setVisibility}
