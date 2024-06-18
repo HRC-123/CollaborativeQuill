@@ -178,7 +178,7 @@ const Editor = () => {
       ></div>
 
       {visibility && (
-        <div className="fixed top-[35%] left-[31%]">
+        <div className="fixed top-[35%] left-[25%]">
           {load ? (
             <Loader />
           ) : (
