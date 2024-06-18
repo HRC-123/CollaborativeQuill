@@ -80,12 +80,12 @@ const Editor = () => {
     return () => {
       quill && quill.off("text-change", handleChange);
     };
-  }, [quill, socket]);
+  }, [quill, socket,name]);
 
   useEffect(() => {
     if (socket === null || quill === null) return;
-    const handleChange = (delta, name) => {
-      setName(name);
+    const handleChange = ({ delta, Name }) => {
+      setName(Name);
       quill.updateContents(delta);
     };
 

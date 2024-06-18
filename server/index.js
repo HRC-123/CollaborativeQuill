@@ -23,17 +23,17 @@ io.on('connection', socket => {
 
   socket.on('get-document', async ({ documentId, name }) => {
 
-    console.log("Index.js", documentId, name);
+    // console.log("Index.js", documentId, name);
 
     const document = await getDocument({ "id": documentId, "name": name });
 
     socket.join(documentId);
     socket.emit('load-document', { "document": document.data, "Name": document.name });
 
-    socket.on("send-changes", ({delta}) => {
-          socket.broadcast.to(documentId).emit("receive-changes", { "delta": delta });
+    socket.on("send-changes", ({name,delta}) => {
+          socket.broadcast.to(documentId).emit("receive-changes", { "Name":name,"delta": delta });
 
-          console.log("connected", delta);
+          console.log("connected", name,delta);
         });
 
     socket.on('save-document', async ({ name, data }) => {
