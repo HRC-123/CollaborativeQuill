@@ -13,35 +13,37 @@ import Loader from "./Loader";
 
 
 
-const toolbarOptions = [
-  ["bold", "italic", "underline", "strike"], // toggled buttons
-  ["blockquote", "code-block"],
-  ["link", "image", "video", "formula"],
 
-  [{ header: 1 }, { header: 2 }], // custom button values
-  [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
-  [{ script: "sub" }, { script: "super" }], // superscript/subscript
-  [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
-  [{ direction: "rtl" }], // text direction
-
-  [{ size: ["small", false, "large", "huge"] }], // custom dropdown
-  [{ header: [1, 2, 3, 4, 5, 6, false] }],
-
-  [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-  [{ font: [] }],
-  [{ align: [] }],
-
-  ["clean"], // remove formatting button
-];
 
 const Editor = () => {
   const [socket, setSocket] = useState();
   const [quill, setQuill] = useState();
   const { id } = useParams();
-  const [name, setName] = useState("Untitled Document");
-  const [visibility, setVisibility] = useState(true);
-  const [bg, setBg] = useState(true);
-  const [load, setLoad] = useState(true);
+  const [name, setName] = useState("Untitled Document " + id);
+  const [visibility, setVisibility] = useState(false);
+  const [bg, setBg] = useState(false);
+  const [load, setLoad] = useState(false);
+  
+  const toolbarOptions = [
+    ["bold", "italic", "underline", "strike"], // toggled buttons
+    ["blockquote", "code-block"],
+    ["link", "image", "video", "formula"],
+
+    [{ header: 1 }, { header: 2 }], // custom button values
+    [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
+    [{ script: "sub" }, { script: "super" }], // superscript/subscript
+    [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
+    [{ direction: "rtl" }], // text direction
+
+    [{ size: ["small", false, "large", "huge"] }], // custom dropdown
+    [{ header: [1, 2, 3, 4, 5, 6, false] }],
+
+    [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+    [{ font: [] }],
+    [{ align: [] }],
+
+    ["clean"], // remove formatting button
+  ];
 
   useEffect(() => {
     const quillServer = new Quill("#container", {
@@ -51,7 +53,7 @@ const Editor = () => {
       theme: "snow",
     });
 
-    quillServer.disable();
+    // quillServer.disable();
     // quillServer.setText('Loading ................')
 
     setQuill(quillServer);
@@ -71,6 +73,8 @@ const Editor = () => {
     if (socket === null || quill === null) return;
     const handleChange = (delta, oldData, source) => {
       if (source !== "user") return;
+  //     // console.log("delta",delta)
+  //     // console.log("oldData",oldData);
 
       socket && socket.emit("send-changes", { name: name, delta: delta });
     };
@@ -101,7 +105,7 @@ const Editor = () => {
 
     socket &&
       socket.once("load-document", ({ document, Name }) => {
-        console.log("........", document, Name);
+        // console.log("........", document, Name);
         quill && quill.setContents(document);
         setName(Name);
         quill && quill.enable();
@@ -178,7 +182,7 @@ const Editor = () => {
       ></div>
 
       {visibility && (
-        <div className="fixed top-[35%] left-[25%]">
+        <div className="fixed top-[35%] left-[26.5%] min-xl:left-[34%]">
           {load ? (
             <Loader />
           ) : (

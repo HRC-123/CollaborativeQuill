@@ -15,7 +15,7 @@ const io = new Server(process.env.port || 9000, {
   cors: {
         origin: process.env.CLIENT,
     // origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST","PUT"],
   },
 });
 

@@ -2,7 +2,7 @@
 import Document from "../schema/documentSchema.js";
 
 export const getDocument = async ({ id, name }) => {
-    console.log("Hello" ,id, name);
+    // console.log("Hello" ,id, name);
     if (id === null) return;
 
     const document = await Document.findById(id);

@@ -1,6 +1,7 @@
 import "./App.css";
 
 import Editor from "./Components/Editor";
+import Sample from "./Components/Sample";
 
 
 import { BrowserRouter as Router, Routes, Route,Navigate } from "react-router-dom";
