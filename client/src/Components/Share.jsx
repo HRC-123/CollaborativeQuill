@@ -2,7 +2,7 @@ const Share = (props) => {
 
     const Done = () => {
          props.setVisibility(!props.visibility);
-        props.setBg(!props.bg);
+        // props.setBg(!props.bg);
         // window.location.reload();
     }
 

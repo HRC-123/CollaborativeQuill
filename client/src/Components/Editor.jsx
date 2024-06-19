@@ -21,7 +21,7 @@ const Editor = () => {
   const { id } = useParams();
   const [name, setName] = useState("Untitled Document " + id);
   const [visibility, setVisibility] = useState(true);
-  const [bg, setBg] = useState(true);
+  const [bg, setBg] = useState(false);
   const [load, setLoad] = useState(true);
   
   const toolbarOptions = [
@@ -111,7 +111,7 @@ const Editor = () => {
         quill && quill.enable();
          setLoad(false);
          setVisibility(false);
-         setBg(false);
+        //  setBg(false);
         
         quill.setSelection(0, 0);
       });
@@ -163,7 +163,7 @@ const Editor = () => {
  
 
   return (
-    <div className={`w-full bg-gray-100 ${bg ? "blur-parent" : ""} font-mono`}>
+    <div className={`w-full bg-gray-100  font-mono`}>
       <Name
         name={name}
         setName={setName}
@@ -176,9 +176,7 @@ const Editor = () => {
 
       <div
         id="container"
-        className={`w-2/3 !px-28 !py-24 bg-white shadow-xl !my-[20px] !mx-auto min-h-screen ${
-          bg ? "blur-sm" : ""
-        }`}
+        className={`w-2/3 !px-28 !py-24 bg-white shadow-xl !my-[20px] !mx-auto min-h-screen `}
       ></div>
 
       {visibility && (

@@ -7,7 +7,7 @@ const Name = (props) => {
 
   const share = () => {
     props.setVisibility(!props.visibility);
-    props.setBg(!props.bg);
+    // props.setBg(!props.bg);
   };
 
   const Logo = () => {
@@ -16,9 +16,7 @@ const Name = (props) => {
 
   return (
     <div
-      className={`flex sticky top-0 z-10 bg-gray-100 justify-between ${
-        props.bg ? "blur-sm" : ""
-      }`}
+      className={`flex sticky top-0 z-10 bg-gray-100 justify-between `}
     >
       <div className="flex">
         <img
