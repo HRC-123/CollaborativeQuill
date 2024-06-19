@@ -20,9 +20,9 @@ const Editor = () => {
   const [quill, setQuill] = useState();
   const { id } = useParams();
   const [name, setName] = useState("Untitled Document " + id);
-  const [visibility, setVisibility] = useState(false);
-  const [bg, setBg] = useState(false);
-  const [load, setLoad] = useState(false);
+  const [visibility, setVisibility] = useState(true);
+  const [bg, setBg] = useState(true);
+  const [load, setLoad] = useState(true);
   
   const toolbarOptions = [
     ["bold", "italic", "underline", "strike"], // toggled buttons
